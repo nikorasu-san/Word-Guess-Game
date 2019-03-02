@@ -1,10 +1,8 @@
 // global variables
-//let letters = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
 let letters = "abcdefghijklmnopqrstuvwxyz";
 let allWords = ["blue", "black", "yellow", "red", "green", "brown", "grey", "khaki", "purple", "aquamarine",
-  "pink", "tan", "teal", "turquoise", "sienna", "cyan", "chartreuse", "chocolate", "magenta", "white", "orange", "olive", "plum", "silver", "gold", "lime", "crimson", "coral", "violet", "navy"]
-//let words = ["samus", "peach", "shulk", "lucas"];
-let words = []
+  "pink", "tan", "teal", "turquoise", "sienna", "cyan", "chartreuse", "chocolate", "magenta", "white", "orange", "olive", "plum", "silver", "gold", "lime", "crimson", "coral", "violet", "navy"];
+let words = [];
 let playerGuess = [];
 let blankArray = [];
 let currentWord = "";
@@ -31,19 +29,16 @@ function startGame() {
     // reset logic to allow users to start a consecutive match/game w/ spacebar
     counters.wins = 0;
     counters.loses = 0;
-    displayLetters.innerHTML = "...";
+    displayLetters.textContent = "...";
     displayWins.innerHTML = "0";
     displayLoses.innerHTML = "0";
-    //words array reset
+    // words array -- the 4 rounds for the user --  reset
     setWordsArray();
-    //words = ["samus", "peach", "shulk", "lucas"];
     // trigger app to choose a word
     displayBlankWord(chooseWord());
     setRemaining();
     gameOn = true;
-    console.log("game started!");
     displayMessage.innerHTML = " ";
-    console.log("start or reset: ", gameOn);
   }
 }
 
@@ -52,7 +47,6 @@ function setWordsArray() {
   for (let i = 0; i < 4; i++) {
     let allWordsIndex = Math.floor(Math.random() * Math.floor(allWords.length));
     words.push(allWords[allWordsIndex]);
-    console.log(words)
   }
 }
 
@@ -63,69 +57,64 @@ function chooseWord() {
     // random number to pull a random element in words array 
     let wordIndex = Math.floor(Math.random() * Math.floor(words.length));
     currentWord = words[wordIndex];
-    //remove word from array so that comp won't pick it again
+    // send currentWord as a class while keeping the classes in HTML
+    let newClass = currentWord + " card mx-auto";
+    document.getElementById('color-tile').setAttribute('class', newClass);
+    // remove word from array so that comp won't pick it again
     words.splice(wordIndex, 1);
   } else {
     // end game -- consider if new point is needed
     currentWord = "";
     endGame();
   }
-  console.log("chooseword func:", currentWord);
   return currentWord;
 }
 
-// App prints word to page
+// App prints current word as hidden word to page
 function displayBlankWord(arg) {
-  //loop currentWord.length and populate blanks
+  // loop currentWord.length and populate blanks
   for (let i = 0; i < arg.length; i++) {
     blankArray.push("_");
-    // console.log("displayBlankWord: ", arg);
     displayLetters.innerHTML = blankArray.join(" ");
-    // console.log(currentWord);
-    // console.log(blankArray);
-    // console.log(arg);
   }
 }
 
 // ---- Scoreboard functions ------
 
-// add point to win
+// Add point to win
 function addWin() {
   counters.wins++;
   displayWins.textContent = counters.wins;
-  console.log("wins: ", counters.wins)
 }
 
-// add point to loses
+// Add point to loses
 function addLose() {
   counters.loses++;
   displayLoses.textContent = counters.loses;
-  console.log("loses: ", counters.loses)
 }
 
-// subtract available guesses
+// Subtract available guesses
 function minusRemaining() {
   counters.remaining--;
   displayRemaining.textContent = counters.remaining;
-  console.log("remaining: ", counters.remaining)
 }
 
-// set available guesses
+// Reset available guesses per word
 function setRemaining() {
   counters.remaining = 5;
   displayRemaining.textContent = counters.remaining;
 }
 
-// --- Mid-Game User Input Functions ------
+// --- Functions Processing User Input Mid-Game ------
 
 // Store player's key press into an array & display it on screen
 function storeGuess() {
-  // only store unique letter key presses into playerGuess array
+  // only store new key presses into playerGuess array
   if (!playerGuess.includes(event.key.toLowerCase())) {
     playerGuess.push(event.key.toLowerCase());
     // display player guesses
     displayGuessHistory.innerHTML = playerGuess.join(" ");
-    // call the logic to compare a new unique letter to current word
+    // call function to compare the new letter to current word
     compareLetter();
   } else { // do nothing
   }
@@ -133,18 +122,15 @@ function storeGuess() {
 
 // Compare player's key press to letters in word
 function compareLetter() {
+  //decide if it is a correct letter
   if (currentWord.includes(event.key)) {
     // @ consider making a sound
-    // loop the word
-    console.log("i'm in compareLetter function")
+    // find the index of matching letters
     for (let i = 0; i < currentWord.length; i++) {
-      // find the index of a match
       if (currentWord[i] === event.key.toLowerCase()) {
         // revisit blanks array to splice in letter
-        console.log("compare:", currentWord[i]);
         blankArray.splice(i, 1, currentWord[i]);
         // display the edited array 
-        console.log(blankArray);
         displayLetters.textContent = blankArray.join(" ");
       } else { // do nothing
       }
@@ -166,7 +152,8 @@ function nextWord() {
     blankArray = [];
     playerGuess = [];
     // clear screen
-    displayGuessHistory.textContent = playerGuess
+    displayGuessHistory.textContent = playerGuess;
+    setRemaining();
     // choose new word
     displayBlankWord(chooseWord());
   } else if (counters.remaining === 0) {
@@ -191,11 +178,11 @@ function nextWord() {
 // Choose Game Over message -- Called after words array is empty.
 function endGame() {
   if (counters.wins === 4) {
-    displayMessage.innerHTML = "Congrats! You completed the game with a perfect score! You know your stuff! <br> Press Space to play again. ";
+    displayMessage.innerHTML = "Congrats! You completed the game with a perfect score! You know your stuff! <br> Press Space to play again.";
     gameOn = false;
   } else {
-    displayMessage.innerHTML = "You completed all the rounds for the game! Play again to see if you get a higher score. <br> Press Space to play again.";
-    //stop game
+    displayMessage.innerHTML = "You completed all the rounds for the game! <br> Play again to see if you get a higher score. <br> Press Space to play again.";
+    // stop game from accepting key presses that aren't space
     gameOn = false;
   }
 }
@@ -204,16 +191,13 @@ function endGame() {
 
 // --- Main App ----
 document.onkeyup = function (event) {
+  // start game function waiting for space bar to be pressed
   startGame();
-  // only respect key presses that are letters and after game is initialized after space bar
+  // only react to key presses that are letters
   if (gameOn && letters.includes(event.key.toLowerCase())) {
-    //compareLetter();
-    console.log(event.key);
-    console.log("player guess: ", playerGuess);
-    //app processes user guess
+    //app processes the letter key
     storeGuess();
     nextWord();
   }
 };
-
 

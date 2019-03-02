@@ -1,18 +1,32 @@
+h1 {
+    font-size: 3.5rem;
+}
+
 #panel,.guess-history {
     letter-spacing: .4rem;
 }
 
+#message {
+    letter-spacing: .2rem;
+}
 
-.cast {
-    background-color: 
-    blue, black, yellow, red, green, brown, grey, khaki, purple, aquamarine, 
-    pink, tan, teal,turquoise, sienna, cyan, chartreuse, chocolate,magenta,
-     white, orange, olive, plum, silver, gold, lime, crimson, coral, violet, navy,
-} 
+#back {
+    background: #1fc8db;
+    background-image: url(../images/square_bg/square_bg.png), linear-gradient(90deg, #9fb8ad 8%, #1fc8db 70%, #2cb5e8 95%);
+}
+
+.new-font {
+    font-family: 'Bangers', cursive;
+}
+
+#color-tile {
+    height: 50px;
+    width: 100px;
+}
 
 /* color classes */
 .blue{
-    background-color: blue ;
+    background-color: blue;
 }
 .black{
     background-color: black;
@@ -54,7 +68,7 @@
     background-color: turquoise;
 }
 .sienna{
-    background-color: ;
+    background-color: sienna;
 }
 .cyan{
     background-color: cyan;
