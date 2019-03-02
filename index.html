@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <title>Word Guess Game</title>
+  <link rel="stylesheet" href="assets/css/reset.css" />
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <link rel="stylesheet" href="assets/css/style.css" />
+</head>
+
+<body>
+  <h1>Hangman</h1>
+  <br />
+  <h4 id="message">Press space to get started!</h4>
+  <br />
+  <div>Current Word:<br>
+    <div id="panel">...</div>
+    Remaining Strikes:<div id="remaining">?</div> <br />
+    Letters already guessed:<div id="guess-history">?</div> <br>
+  </div>
+  <div id="board">
+    Games Won: <div id="wins">0</div> <br />
+    Games Lost: <div id="loses">0</div> <br>
+  </div>
+  <div id="screen"></div>
+  <script src="assets/javascript/game.js"></script>
+</body>
+
+</html>

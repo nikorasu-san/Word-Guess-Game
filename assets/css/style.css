@@ -1,0 +1,103 @@
+#panel,.guess-history {
+    letter-spacing: .4rem;
+}
+
+
+.cast {
+    background-color: 
+    blue, black, yellow, red, green, brown, grey, khaki, purple, aquamarine, 
+    pink, tan, teal,turquoise, sienna, cyan, chartreuse, chocolate,magenta,
+     white, orange, olive, plum, silver, gold, lime, crimson, coral, violet, navy,
+} 
+
+/* color classes */
+.blue{
+    background-color: blue ;
+}
+.black{
+    background-color: black;
+}
+.yellow{
+    background-color: yellow;
+}
+.red{
+    background-color: red;
+}
+.green{
+    background-color: green;
+}
+.brown{
+    background-color: brown;
+}
+.grey{
+    background-color: grey;
+}
+.khaki{
+    background-color: khaki;
+}
+.purple{
+    background-color: purple;
+}
+.aquamarine{
+    background-color: aquamarine;
+}
+.pink{
+    background-color: pink;
+}
+.tan{
+    background-color: tan;
+}
+.teal{
+    background-color: teal;
+}
+.turquoise{
+    background-color: turquoise;
+}
+.sienna{
+    background-color: ;
+}
+.cyan{
+    background-color: cyan;
+}
+.chartreuse{
+    background-color: chartreuse;
+}
+.chocolate{
+    background-color: chocolate;
+}
+.magenta{
+    background-color: magenta;
+}
+.white{
+    background-color: white;
+}
+.orange{
+    background-color: orange;
+}
+.olive{
+    background-color: olive;
+}
+.plum{
+    background-color: plum;
+}
+.silver{
+    background-color: silver;
+}
+.gold{
+    background-color: gold;
+}
+.lime{
+    background-color: lime;
+}
+.crimson{
+    background-color: crimson;
+}
+.coral{
+    background-color: coral;
+}
+.violet{
+    background-color: violet;
+}
+.navy{
+    background-color: navy;
+}
