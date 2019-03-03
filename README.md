@@ -14,6 +14,7 @@ Objective: Create a hangman simulator.
 ## Shout-outs
 * I used http://www.orangefreesounds.com for the sounds played during the game.
 * I used https://www.toptal.com/designers/subtlepatterns/ to add a subtle texture to my background.
+* The site is using Bootstraps v4.3 and "Bangers" Google Font.
 
 ## Future Recommendations for next version
 * Consider functionality to change the background when a new game or new round has started to visually differentiate where you are in the game. A progress bar could also be an acceptable solution.

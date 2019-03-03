@@ -19,31 +19,32 @@ let counters = {
   remaining: 0
 };
 
-console.log(allWords.length)
 
 // ---- Functions -----
+
 // ---- Initializing Game -----
 
 // Start game 
 function startGame() {
   if (!gameOn && event.key === " ") {
-    // reset logic to allow users to start a consecutive match/game w/ spacebar
+    // reset logic to allow users to start a consecutive new game w/ spacebar
     counters.wins = 0;
     counters.loses = 0;
     displayLetters.textContent = "...";
     displayWins.innerHTML = "0";
     displayLoses.innerHTML = "0";
-    // words array -- the 4 rounds for the user --  reset
+    // words array -- aka the 4 rounds for the user --  reset
     setWordsArray();
-    // trigger app to choose a word
+    // trigger app to choose a word, update remaining guesses, turn on game
     displayBlankWord(chooseWord());
     setRemaining();
     gameOn = true;
+    // clear instructional message on page
     displayMessage.innerHTML = " ";
   }
 }
 
-// App chooses smaller subset of words
+// App chooses smaller set words for the game's 4 rounds
 function setWordsArray() {
   for (let i = 0; i < 4; i++) {
     let allWordsIndex = Math.floor(Math.random() * Math.floor(allWords.length));
@@ -156,7 +157,6 @@ function storeGuess() {
 function compareLetter() {
   //decide if it is a correct letter
   if (currentWord.includes(event.key)) {
-    // @ consider making a sound
     // find the index of matching letters
     for (let i = 0; i < currentWord.length; i++) {
       if (currentWord[i] === event.key.toLowerCase()) {
@@ -182,7 +182,7 @@ function nextWord() {
   // Win condition: If there are no blanks left, clear screen and choose a new word
   if (!blankArray.includes("_")) {
     displayMessage.innerHTML = "You guessed the correct word! Keep going!";
-    // add point
+    // add point to win counter
     addWin();
     // clear arrays
     blankArray = [];
@@ -196,7 +196,7 @@ function nextWord() {
   } else if (counters.remaining === 0) {
     // Lose condition: 0 remaining guesses. 
     displayMessage.innerHTML = "You ran out of guesses, but here is a new word. Keep going!";
-    // add lose
+    // add to lose counter
     addLose();
     // clear arrays
     blankArray = [];
@@ -224,11 +224,7 @@ function endGame() {
 }
 
 
-
-
-
-
-// --- Main App ----
+// --- Main App / Root Function to listen for key presses ---
 document.onkeyup = function (event) {
   // start game function waiting for space bar to be pressed
   startGame();
