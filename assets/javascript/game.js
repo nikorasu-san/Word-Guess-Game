@@ -115,7 +115,6 @@ function audioNewWord() {
   audioElement.setAttribute("src", "./assets/sounds/Magic-chimes-transition-reverb.mp3");
   audioElement.playbackRate = 2.5;
   audioElement.play();
-  console.log("play ", audioElement.play())
 }
 
 // Make a sound for successful letter guesses
@@ -124,7 +123,6 @@ function audioCorrectLetter() {
   audioElement.setAttribute("src", "./assets/sounds/Successful-sound.mp3");
   audioElement.playbackRate = 3.0;
   audioElement.play();
-  console.log("play ", audioElement.play())
 }
 
 // Make a sound for incorrect letter guesses
@@ -133,7 +131,6 @@ function audioWrongLetter() {
   audioElement.setAttribute("src", "./assets/sounds/Error-sound.mp3");
   audioElement.playbackRate = 1.5;
   audioElement.play();
-  console.log("play ", audioElement.play())
 }
 
 
