@@ -1,7 +1,7 @@
 // global variables
 let letters = "abcdefghijklmnopqrstuvwxyz";
 let allWords = ["blue", "black", "yellow", "red", "green", "brown", "grey", "khaki", "purple", "aquamarine",
-  "pink", "tan", "teal", "turquoise", "sienna", "cyan", "chartreuse", "chocolate", "magenta", "white", "orange", "olive", "plum", "silver", "gold", "lime", "crimson", "coral", "violet", "navy"];
+  "pink", "tan", "teal", "turquoise", "sienna", "cyan", "chartreuse", "chocolate", "magenta", "white", "orange", "olive", "plum", "silver", "gold", "lime", "crimson", "coral", "violet", "navy", "cerulean", "dandelion"];
 let words = [];
 let playerGuess = [];
 let blankArray = [];
@@ -13,12 +13,13 @@ let displayRemaining = document.getElementById("remaining");
 let displayGuessHistory = document.getElementById("guess-history");
 let displayMessage = document.getElementById("message");
 let gameOn = false;
-
 let counters = {
   wins: 0,
   loses: 0,
   remaining: 0
 };
+
+console.log(allWords.length)
 
 // ---- Functions -----
 // ---- Initializing Game -----
@@ -105,6 +106,37 @@ function setRemaining() {
   displayRemaining.textContent = counters.remaining;
 }
 
+// --- Sound Effects ----
+
+// Make a sound for new words
+function audioNewWord() {
+  let audioElement = document.createElement("audio");
+  audioElement.setAttribute("src", "./assets/sounds/Magic-chimes-transition-reverb.mp3");
+  audioElement.playbackRate = 2.5;
+  audioElement.play();
+  console.log("play ", audioElement.play())
+}
+
+// Make a sound for successful letter guesses
+function audioCorrectLetter() {
+  let audioElement = document.createElement("audio");
+  audioElement.setAttribute("src", "./assets/sounds/Successful-sound.mp3");
+  audioElement.playbackRate = 3.0;
+  audioElement.play();
+  console.log("play ", audioElement.play())
+}
+
+// Make a sound for incorrect letter guesses
+function audioWrongLetter() {
+  let audioElement = document.createElement("audio");
+  audioElement.setAttribute("src", "./assets/sounds/Error-sound.mp3");
+  audioElement.playbackRate = 1.5;
+  audioElement.play();
+  console.log("play ", audioElement.play())
+}
+
+
+
 // --- Functions Processing User Input Mid-Game ------
 
 // Store player's key press into an array & display it on screen
@@ -132,12 +164,16 @@ function compareLetter() {
         blankArray.splice(i, 1, currentWord[i]);
         // display the edited array 
         displayLetters.textContent = blankArray.join(" ");
+        //play sound
+        audioCorrectLetter();
       } else { // do nothing
       }
     };
   } else {
     // lose a remaining guess
     minusRemaining();
+    // play sound
+    audioWrongLetter();
   }
 }
 
@@ -155,6 +191,7 @@ function nextWord() {
     displayGuessHistory.textContent = playerGuess;
     setRemaining();
     // choose new word
+    audioNewWord();
     displayBlankWord(chooseWord());
   } else if (counters.remaining === 0) {
     // Lose condition: 0 remaining guesses. 
@@ -169,11 +206,10 @@ function nextWord() {
     // reset remaining guesses
     setRemaining();
     // choose new word
+    audioNewWord();
     displayBlankWord(chooseWord());
   }
 }
-
-// Games lost
 
 // Choose Game Over message -- Called after words array is empty.
 function endGame() {
@@ -186,6 +222,9 @@ function endGame() {
     gameOn = false;
   }
 }
+
+
+
 
 
 
