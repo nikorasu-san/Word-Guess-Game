@@ -4,6 +4,8 @@ Objective: Create a hangman simulator.
 ## Overview
 "Name that color" is hangman based game tasking the user to enter the correct name for the randomly generated color. This game theme was inspired by wanting to teach my nephew new colors. Hopefully this will spark a passion for him to learn new colors.
 
+For the colors, I primarily used the default settings that come with color names that auto-populate in visual studio code. For some additional colors, I researched hexadecimal codes for crayola versions of those colors. (https://en.wikipedia.org/wiki/List_of_Crayola_crayon_colors)
+
 ## Instructions
 1. Press "Space Key" to start the game.
 2. Observe the color tile presented. Press letter keys to fill in the blanks (or underscore) representing the color's name.
